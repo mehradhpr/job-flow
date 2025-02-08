@@ -1,6 +1,6 @@
 # job-flow
 
-Job Application tracker and smart form filler
+Job Application tracker with URL smart storage across LinkedIn and Export CSV option.
 
 # JobFlow
 
