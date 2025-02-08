@@ -8,8 +8,14 @@
     "scripting",
     "tabs"
   ],
+  "icons": {
+    "16": "suitcase.png",
+    "48": "suitcase.png",
+    "128": "suitcase.png"
+  },
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup.html",
+    "default_icon": "suitcase.png"
   },
   "background": {
     "service_worker": "background.js"

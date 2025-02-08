@@ -1,4 +1,3 @@
-// popup.js
 document.addEventListener("DOMContentLoaded", () => {
   updateJobList();
   document
@@ -21,21 +20,38 @@ function clearAllJobs() {
 
 function updateJobList() {
   const jobList = document.getElementById("jobList");
+  const applicationCount = document.getElementById("applicationCount");
+
   chrome.storage.local.get({ jobs: [] }, (data) => {
+    // Update application count
+    applicationCount.textContent = `${data.jobs.length} Applications`;
+
     if (data.jobs.length === 0) {
-      jobList.innerHTML = '<div class="job-entry">No jobs tracked yet</div>';
+      jobList.innerHTML = '<div class="empty-state">No jobs tracked yet</div>';
     } else {
       jobList.innerHTML = data.jobs
         .map(
-          (job) => `
-          <div class="job-entry">
-            <strong>${job.title}</strong>
-            <br>${job.company}
-            <br>Date: ${job.dateApplied}
-          </div>
-        `
+          (job, index) => `
+            <div class="job-entry" data-url="${
+              job.url || "#"
+            }" data-index="${index}">
+              <div class="job-title">${job.title}</div>
+              <div class="job-company">${job.company}</div>
+              <div class="job-date">Applied: ${job.dateApplied}</div>
+            </div>
+          `
         )
         .join("");
+
+      // Add click listeners to job entries
+      document.querySelectorAll(".job-entry").forEach((entry) => {
+        entry.addEventListener("click", () => {
+          const url = entry.dataset.url;
+          if (url && url !== "#") {
+            chrome.tabs.create({ url: url });
+          }
+        });
+      });
     }
   });
 }
@@ -53,7 +69,7 @@ function exportToExcel() {
       const row = [
         `"${job.title.replace(/"/g, '""')}"`,
         `"${job.company.replace(/"/g, '""')}"`,
-        `"${job.url}"`,
+        `"${job.url || ""}"`,
         `"${job.dateApplied}"`,
       ].join(",");
       csvContent += row + "\n";

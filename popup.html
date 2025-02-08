@@ -1,4 +1,3 @@
-// popup.html
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,19 +6,38 @@
       width: 350px;
       padding: 15px;
       font-family: Arial, sans-serif;
+      color: #333;
     }
-    .job-entry {
-      margin: 10px 0;
-      padding: 10px;
-      border: 1px solid #eee;
-      border-radius: 4px;
-      background-color: #f9f9f9;
+    
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #0077b5;
     }
+    
+    .title {
+      margin: 0;
+      color: #0077b5;
+    }
+    
+    .stats {
+      background: #0077b5;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    
     .button-container {
       display: flex;
       gap: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
     }
+    
     button {
       flex: 1;
       padding: 8px;
@@ -28,28 +46,76 @@
       cursor: pointer;
       font-weight: bold;
       color: white;
+      transition: background-color 0.2s ease;
     }
+    
     #exportExcel {
       background-color: #0077b5;
     }
+    
     #exportExcel:hover {
       background-color: #006097;
     }
+    
     #clearAll {
       background-color: #dc3545;
     }
+    
     #clearAll:hover {
       background-color: #c82333;
     }
+    
     #jobList {
       max-height: 300px;
-      overflow-y: auto;
+      overflow-y: visible;
       margin: 10px 0;
+    }
+    
+    .job-entry {
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    
+    .job-entry:hover {
+      background-color: #f0f0f0;
+      transform: translateX(3px);
+      border-color: #0077b5;
+    }
+    
+    .job-title {
+      color: #0077b5;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+    
+    .job-company {
+      color: #666;
+      margin-bottom: 4px;
+    }
+    
+    .job-date {
+      color: #888;
+      font-size: 0.9em;
+    }
+    
+    .empty-state {
+      text-align: center;
+      color: #666;
+      padding: 20px;
+      font-style: italic;
     }
   </style>
 </head>
 <body>
-  <h3>JobFlow</h3>
+  <div class="header">
+    <h3 class="title">JobFlow</h3>
+    <div class="stats" id="applicationCount">0 Applications</div>
+  </div>
   <div class="button-container">
     <button id="exportExcel">Export to Excel</button>
     <button id="clearAll">Clear All</button>
