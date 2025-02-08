@@ -1,7 +1,3 @@
-# job-flow
-
-Job Application tracker with URL smart storage across LinkedIn and Export CSV option.
-
 # JobFlow
 
 A Chrome extension that automatically tracks your job applications across LinkedIn and other job sites.
