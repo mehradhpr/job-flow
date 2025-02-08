@@ -2,6 +2,8 @@
 
 A Chrome extension that automatically tracks your job applications across LinkedIn and other job sites.
 
+![Alt text](extension.png?raw=true "Title")
+
 ## Features
 
 - Automatically captures job applications when you click "Apply" or "Easy Apply"
